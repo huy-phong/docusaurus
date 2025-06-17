@@ -1,9 +1,4 @@
 name: Deploy to GitHub Pages
-
-defaults:
-  run:
-    working-directory: ./website
-
 on:
   push:
     branches:
@@ -12,9 +7,13 @@ on:
     # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
 
 jobs:
+  
   build:
     name: Build Docusaurus
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./website
     steps:
       - uses: actions/checkout@v4
         with:
@@ -49,6 +48,9 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./website
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
